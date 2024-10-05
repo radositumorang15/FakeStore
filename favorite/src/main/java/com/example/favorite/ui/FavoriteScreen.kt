@@ -9,7 +9,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.core.di.CoreComponent
 import com.example.favorite.presentation.FavoriteViewModel
@@ -18,17 +17,16 @@ import com.example.favorite.di.FavoriteComponent
 
 @Composable
 fun FavoriteScreen(coreComponent: CoreComponent) {
-    // Buat `FavoriteComponent` menggunakan `CoreComponent`
+    // Buat FavoriteComponent menggunakan CoreComponent
     val favoriteComponent: FavoriteComponent = DaggerFavoriteComponent.factory().create(coreComponent)
 
-    // Buat instance `FavoriteViewModel` dan injeksi dengan Dagger
+    // Injeksi ViewModel dengan FavoriteComponent
     val viewModel: FavoriteViewModel = viewModel {
         FavoriteViewModelFactory(favoriteComponent.provideGetProductsUseCase())
     }
 
     val favoriteProducts by viewModel.favoriteProducts.collectAsState()
 
-    // Implementasi UI untuk menampilkan produk favorit
     if (favoriteProducts.isEmpty()) {
         Text(
             text = "No favorite products available.",
