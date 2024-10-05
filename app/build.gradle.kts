@@ -61,8 +61,6 @@ dependencies {
 
     // Core and Favorite module
     implementation(project(":core"))
-    implementation(project(":favorite"))
-
     // Hilt DI
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-compiler:2.48")

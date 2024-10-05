@@ -1,15 +1,15 @@
-package com.example.favorite
+package com.example.favorite.di
 
 import com.example.core.di.CoreComponent
+import com.example.favorite.FavoriteModule
 import com.example.favorite.presentation.FavoriteViewModel
-import com.example.favorite.presentation.FavoriteViewModelFactory
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
 @Component(
-    dependencies = [CoreComponent::class],
-    modules = [FavoriteModule::class]
+    dependencies = [CoreComponent::class], // Menggunakan dependensi dari `core`
+    modules = [FavoriteModule::class] // Modul untuk menyediakan dependensi
 )
 interface FavoriteComponent {
     fun inject(viewModel: FavoriteViewModel)

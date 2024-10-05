@@ -2,7 +2,6 @@ plugins {
     id("com.android.dynamic-feature")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -57,6 +56,7 @@ dependencies {
     implementation("androidx.compose.material3:material3:1.1.0")
     implementation("androidx.compose.ui:ui-tooling-preview:1.5.1")
     implementation("androidx.compose.runtime:runtime:1.5.1")
+    implementation(project(":core"))
 
     // Test Dependencies
     testImplementation(libs.junit)
@@ -64,17 +64,16 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     // Core Module dependency
-    implementation(project(":core"))
+    implementation(project(":app"))
 
     // Coil for image loading
     implementation("io.coil-kt:coil-compose:2.3.0")
 
-    // Dagger and Hilt
-    kapt("com.google.dagger:hilt-compiler:2.48")
-    implementation("com.google.dagger:hilt-android:2.48")
+    // Dagger Dependencies
+    implementation("com.google.dagger:dagger:2.48")
+    kapt("com.google.dagger:dagger-compiler:2.48")
 
     // Lifecycle components
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 }
